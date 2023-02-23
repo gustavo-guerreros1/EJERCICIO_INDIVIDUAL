@@ -1,86 +1,84 @@
-import java.awt.*;
-import javax.swing.*;
-// -------------------------------------------------------------------------
-/**
- * The main panel of the Chess game.
- * 
- * @author Ben Katz (bakatz)
- * @author Myles David II (davidmm2)
- * @author Danielle Bushrow (dbushrow)
- * @version 2010.11.17
- */
-public class ChessPanel
-    extends JPanel{
-    private ChessMenuBar    menuBar;
-    private ChessGameBoard  gameBoard;
-    private ChessGameLog    gameLog;
-    private ChessGraveyard  playerOneGraveyard;
-    private ChessGraveyard  playerTwoGraveyard;
+import java.awt.BorderLayout;
+import javax.swing.JPanel;
+
+
+public class ChessPanel extends JPanel {
+    private ChessMenuBar menuBar;
+    private ChessGameBoard gameBoard;
+    private ChessGameLog gameLog;
+    private ChessGraveyard playerOneGraveyard;
+    private ChessGraveyard playerTwoGraveyard;
     private ChessGameEngine gameEngine;
-    // ----------------------------------------------------------
+    
+    private static final int DEFAULT_WIDTH = 800;
+    private static final int DEFAULT_HEIGHT = 600;
+
     /**
-     * Create a new ChessPanel object.
+     * Creates a new ChessPanel object.
+     * 
+     * This method sets up the main components of the chess game and adds them to this panel.
+     * It also starts the game engine to begin the game.
      */
-    public ChessPanel(){
-        this.setLayout( new BorderLayout() );
+    public ChessPanel() {
+        setLayout(new BorderLayout());
+
         menuBar = new ChessMenuBar();
         gameBoard = new ChessGameBoard();
         gameLog = new ChessGameLog();
-        playerOneGraveyard = new ChessGraveyard( "Player 1's graveyard" );
-        playerTwoGraveyard = new ChessGraveyard( "Player 2's graveyard" );
-        this.add( menuBar, BorderLayout.NORTH );
-        this.add( gameBoard, BorderLayout.CENTER );
-        this.add( gameLog, BorderLayout.SOUTH );
-        this.add( playerOneGraveyard, BorderLayout.WEST );
-        this.add( playerTwoGraveyard, BorderLayout.EAST );
-        this.setPreferredSize( new Dimension( 800, 600 ) );
-        gameEngine = new ChessGameEngine( gameBoard ); // start the game
+        playerOneGraveyard = new ChessGraveyard("Player 1's graveyard");
+        playerTwoGraveyard = new ChessGraveyard("Player 2's graveyard");
+
+        add(menuBar, BorderLayout.NORTH);
+        add(gameBoard, BorderLayout.CENTER);
+        add(gameLog, BorderLayout.SOUTH);
+        add(playerOneGraveyard, BorderLayout.WEST);
+        add(playerTwoGraveyard, BorderLayout.EAST);
+        setPreferredSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
+        
+        gameEngine = new ChessGameEngine(gameBoard); // start the game
     }
-    // ----------------------------------------------------------
+
     /**
      * Gets the logger object for use in other classes.
      * 
-     * @return ChessGameLog the ChessGameLog object
+     * @return the ChessGameLog object
      */
-    public ChessGameLog getGameLog(){
+    public ChessGameLog getGameLog() {
         return gameLog;
     }
-    // ----------------------------------------------------------
+
     /**
-     * Gets the board object for use in other classes.
+     * Gets the game board object for use in other classes.
      * 
-     * @return ChessGameBoard the ChessGameBoard object
+     * @return the ChessGameBoard object
      */
-    public ChessGameBoard getGameBoard(){
+    public ChessGameBoard getGameBoard() {
         return gameBoard;
     }
-    // ----------------------------------------------------------
+
     /**
-     * Gets the game engine object for use in other classes
+     * Gets the game engine object for use in other classes.
      * 
-     * @return ChessGameEngine the ChessGameEngine object
+     * @return the ChessGameEngine object
      */
-    public ChessGameEngine getGameEngine(){
+    public ChessGameEngine getGameEngine() {
         return gameEngine;
     }
-    // ----------------------------------------------------------
+
     /**
      * Gets the appropriate graveyard object for use in other classes.
      * 
-     * @param whichPlayer
-     *            the number of the player (1 or 2)
-     * @return ChessGraveyard the graveyard requested
+     * @param playerNumber the number of the player (1 or 2)
+     * @return the requested ChessGraveyard object
      */
-    public ChessGraveyard getGraveyard( int whichPlayer ){
-        if ( whichPlayer == 1 ){
+    public ChessGraveyard getGraveyard(int playerNumber) {
+        if (playerNumber == 1) {
             return playerOneGraveyard;
-        }
-        else if ( whichPlayer == 2 ){
+        } else if (playerNumber == 2) {
             return playerTwoGraveyard;
-        }
-        else
-        {
-            return null;
+        } else {
+            throw new IllegalArgumentException("Invalid player number: " + playerNumber);
         }
     }
 }
+

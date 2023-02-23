@@ -1,96 +1,93 @@
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-// -------------------------------------------------------------------------
+
 /**
- * Represents a cell on the chess board. Holds a game piece.
- *
- * @author Ben Katz (bakatz)
- * @author Myles David II (davidmm2)
- * @author Danielle Bushrow (dbushrow)
+ * Representa una celda en el tablero de ajedrez. Contiene una pieza de juego.
+ * 
+ * @autor Ben Katz (bakatz)
+ * @autor Myles David II (davidmm2)
+ * @autor Danielle Bushrow (dbushrow)
  * @version 2010.11.17
  */
-public class BoardSquare
-    extends JPanel{
-    private int            row;
-    private int            col;
+public class BoardSquare extends JPanel {
+    private int row;
+    private int col;
     private ChessGamePiece piece;
-    private JLabel         imageLabel;
-    // ----------------------------------------------------------
+    private JLabel imageLabel;
+
     /**
-     * Create a new BoardSquare object.
-     *
-     * @param row
-     *            the row
-     * @param col
-     *            the column
-     * @param piece
-     *            the game piece
+     * Crea un nuevo objeto BoardSquare.
+     * 
+     * @param row el número de fila.
+     * @param col el número de columna.
+     * @param piece la pieza de juego.
      */
-    public BoardSquare( int row, int col, ChessGamePiece piece ){
+    public BoardSquare(int row, int col, ChessGamePiece piece) {
         super();
         this.row = row;
         this.col = col;
         this.piece = piece;
         updateImage();
     }
+
     /**
-     * Updates the image for this BoardSquare.
+     * Actualiza la imagen de este BoardSquare.
      */
-    private void updateImage(){
-        if ( imageLabel != null ){
+    private void updateImage() {
+        // Si ya hay una imagen, la eliminamos.
+        if (imageLabel != null) {
             removeAll();
         }
-        if ( piece != null ){
+        // Si hay una pieza en este BoardSquare, agregamos su imagen.
+        if (piece != null) {
             imageLabel = new JLabel();
-            imageLabel.setIcon( piece.getImage() );
-            add( imageLabel );     
+            imageLabel.setIcon(piece.getImage());
+            add(imageLabel);
         }
-        revalidate(); // repaint wasn't working, gotta force the window manager
-        // to redraw...
+        revalidate(); // Repintar no estaba funcionando, hay que forzar al administrador de ventanas a redibujar.
     }
-    // ----------------------------------------------------------
+
     /**
-     * Gets the row number.
-     *
-     * @return int the row number
+     * Obtiene el número de fila.
+     * 
+     * @return int el número de fila.
      */
-    public int getRow(){
+    public int getRow() {
         return row;
     }
-    // ----------------------------------------------------------
+
     /**
-     * Gets the column number.
-     *
-     * @return int the column number
+     * Obtiene el número de columna.
+     * 
+     * @return int el número de columna.
      */
-    public int getColumn(){
+    public int getColumn() {
         return col;
     }
-    // ----------------------------------------------------------
+
     /**
-     * Gets the piece on this square
-     *
-     * @return GamePiece the piece
+     * Obtiene la pieza en este cuadrado.
+     * 
+     * @return ChessGamePiece la pieza.
      */
-    public ChessGamePiece getPieceOnSquare(){
+    public ChessGamePiece getPieceOnSquare() {
         return piece;
     }
-    // ----------------------------------------------------------
+
     /**
-     * Sets the piece on this square
-     *
-     * @param p
-     *            the piece
+     * Establece la pieza en este cuadrado.
+     * 
+     * @param p la pieza.
      */
-    public void setPieceOnSquare( ChessGamePiece p ){
+    public void setPieceOnSquare(ChessGamePiece p) {
         piece = p;
         updateImage();
     }
-    // ----------------------------------------------------------
+
     /**
-     * Clears this square, removing the icon and the piece.
+     * Limpia este cuadrado, eliminando el icono y la pieza.
      */
-    public void clearSquare(){
+    public void clearSquare() {
         piece = null;
         removeAll();
     }
