@@ -1,3 +1,4 @@
 # EJERCICIO_INDIVIDUAL
-Refactorizacion 
-Mantenimiento
+# Refactorizacion 
+# Mantenimiento
+### Gustavo Guerreros Jacobe 
