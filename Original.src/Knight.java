@@ -34,7 +34,7 @@ public class Knight
      *            the board to check moves on
      * @return ArrayList<String> a list of the possible moves
      */
-    private ArrayList<String> calculateNorthMoves( ChessGameBoard board ){
+    ArrayList<String> calculateNorthMoves( ChessGameBoard board ){
         ArrayList<String> moves = new ArrayList<>();
         for ( int i = 2; i >= -2; i -= 4 ){
             for ( int j = 1; j >= -1; j -= 2 ){
@@ -58,7 +58,7 @@ public class Knight
      *            the board to check moves on
      * @return ArrayList<String> a list of the possible moves
      */
-    private ArrayList<String> calculateSouthMoves( ChessGameBoard board ){
+    ArrayList<String> calculateSouthMoves( ChessGameBoard board ){
         ArrayList<String> moves = new ArrayList<>();
         for ( int i = 1; i >= -1; i -= 2 ){
             for ( int j = 2; j >= -2; j -= 4 ){
