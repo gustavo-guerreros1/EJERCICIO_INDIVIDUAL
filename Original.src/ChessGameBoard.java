@@ -281,5 +281,9 @@ public class ChessGameBoard extends JPanel{
         public void mouseReleased( MouseEvent e ){ /* not used */
         }
     }
+	public void placePiece(Rook rook) {
+		// TODO Auto-generated method stub
+		
+	}
     
 }
